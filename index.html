@@ -12,10 +12,10 @@
     <style>
         /* --- 1. VARIABLES & RESET (UI BASE) --- */
         :root {
-            --bg-dark: #0a0f1c; /* Lebih gelap, deep navy */
+            --bg-dark: #0a0f1c;
             --bg-card: rgba(30, 41, 59, 0.6);
-            --primary: #3b82f6; /* Biru Royal */
-            --accent: #06b6d4; /* Cyan Neon */
+            --primary: #3b82f6;
+            --accent: #06b6d4;
             --text-light: #f1f5f9;
             --text-gray: #94a3b8;
             --glass: rgba(255, 255, 255, 0.03);
@@ -69,7 +69,7 @@
             text-shadow: 0 0 10px rgba(6, 182, 212, 0.6);
         }
 
-        /* --- 3. HERO SECTION (UX Focus: First Impression) --- */
+        /* --- 3. HERO SECTION --- */
         .hero {
             height: 100vh;
             display: flex;
@@ -102,7 +102,6 @@
             z-index: 2;
         }
 
-        /* Efek Putaran Neon di Foto */
         .profile-img-wrapper::before {
             content: '';
             position: absolute;
@@ -128,16 +127,25 @@
             font-size: 3.5rem;
             font-weight: 700;
             line-height: 1.2;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             background: linear-gradient(to right, #fff, #94a3b8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+        }
+        
+        .nim-text {
+            font-family: 'Fira Code', monospace;
+            font-size: 1.1rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+            font-weight: 600;
         }
 
         .typing-text {
             font-size: 1.2rem;
             color: var(--text-gray);
-            height: 30px; /* Menjaga layout tidak loncat */
+            height: 30px; 
         }
 
         .btn-cta {
@@ -158,7 +166,7 @@
             box-shadow: 0 0 35px rgba(6, 182, 212, 0.6);
         }
 
-        /* --- 4. SECTIONS (General Layout) --- */
+        /* --- 4. SECTIONS --- */
         section {
             padding: 100px 20px;
             max-width: 1100px;
@@ -185,13 +193,6 @@
             border-radius: 2px;
         }
 
-        /* --- 5. GRID CARDS (Glassmorphism) --- */
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
         .card {
             background: var(--glass);
             border: 1px solid var(--border);
@@ -201,120 +202,143 @@
             position: relative;
             overflow: hidden;
             backdrop-filter: blur(10px);
+            margin-bottom: 2rem; 
         }
 
         .card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
             border-color: var(--accent);
             background: rgba(255,255,255,0.05);
         }
 
-        .card h3 {
-            margin-bottom: 1rem;
+        /* --- INFO HEADER (TAMPILAN YANG ANDA MINTA KEMBALI) --- */
+        .info-header {
             display: flex;
-            align-items: center;
-            gap: 10px;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
         }
 
-        .card i {
+        .info-box {
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .info-box i {
             color: var(--accent);
-            font-size: 1.5rem;
-        }
-
-        /* SKILL BARS */
-        .skill-item {
-            margin-bottom: 1rem;
-        }
-        .skill-info {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 5px;
-            font-size: 0.9rem;
-        }
-        .progress-bar {
-            width: 100%;
-            height: 8px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        .progress {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            border-radius: 4px;
-            width: 0; /* Animasi via JS nanti */
-            transition: width 1.5s ease-in-out;
-        }
-
-        /* TIMELINE (Education) */
-        .timeline {
-            border-left: 2px solid var(--border);
-            margin-left: 10px;
-            padding-left: 30px;
-        }
-        .timeline-item {
-            position: relative;
-            margin-bottom: 2.5rem;
-        }
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -39px;
-            top: 5px;
-            width: 16px;
-            height: 16px;
-            background: var(--bg-dark);
-            border: 2px solid var(--accent);
-            border-radius: 50%;
-        }
-        .year {
-            color: var(--accent);
-            font-size: 0.85rem;
-            font-family: 'Fira Code', monospace;
-            margin-bottom: 5px;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
             display: block;
         }
 
-        /* --- 6. FOOTER --- */
-        footer {
-            text-align: center;
-            padding: 3rem 0;
-            border-top: 1px solid var(--border);
-            margin-top: 3rem;
-            font-size: 0.9rem;
+        .info-box p {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            font-weight: 500;
+            margin: 0;
+        }
+
+        .info-box span {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            font-weight: normal;
+        }
+
+        /* --- BIODATA TABLE --- */
+        .biodata-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+        .biodata-table td {
+            padding: 8px 0;
+            vertical-align: top;
             color: var(--text-gray);
         }
-
-        .social-icons {
-            margin-bottom: 1.5rem;
-        }
-        .social-icons a {
+        .biodata-table td:first-child {
+            width: 150px;
+            font-weight: 500;
             color: var(--text-light);
-            font-size: 1.5rem;
-            margin: 0 10px;
-            transition: 0.3s;
         }
-        .social-icons a:hover {
+        .biodata-table td:nth-child(2) {
+            width: 20px;
+            text-align: center;
+        }
+
+        /* --- SKILLS & ACTIVITIES --- */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card h3 {
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+        }
+
+        .activity-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .activity-item {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 1.5rem;
+            border-left: 2px solid var(--border);
+        }
+        .activity-item:hover {
+            border-left-color: var(--accent);
+        }
+        .activity-title {
             color: var(--accent);
-            transform: translateY(-3px);
+            font-weight: 600;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .activity-desc {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            line-height: 1.6;
         }
 
-        /* --- ANIMATION CLASS (Scroll Reveal) --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        /* Skill Bars */
+        .skill-item { margin-bottom: 1rem; }
+        .skill-info { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9rem; }
+        .progress-bar { width: 100%; height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden; }
+        .progress { height: 100%; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 4px; width: 0; transition: width 1.5s ease-in-out; }
 
-        /* --- MOBILE --- */
+        /* Timeline */
+        .timeline { border-left: 2px solid var(--border); margin-left: 10px; padding-left: 30px; }
+        .timeline-item { position: relative; margin-bottom: 2.5rem; }
+        .timeline-item::before { content: ''; position: absolute; left: -39px; top: 5px; width: 16px; height: 16px; background: var(--bg-dark); border: 2px solid var(--accent); border-radius: 50%; }
+        .year { color: var(--accent); font-size: 0.85rem; font-family: 'Fira Code', monospace; margin-bottom: 5px; display: block; }
+
+        /* Footer */
+        footer { text-align: center; padding: 3rem 0; border-top: 1px solid var(--border); margin-top: 3rem; font-size: 0.9rem; color: var(--text-gray); }
+        .social-icons { margin-bottom: 1.5rem; }
+        .social-icons a { color: var(--text-light); font-size: 1.5rem; margin: 0 10px; transition: 0.3s; }
+        .social-icons a:hover { color: var(--accent); transform: translateY(-3px); }
+
+        /* Animations */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
             .navbar { bottom: 20px; top: auto; width: 90%; justify-content: space-around; }
             .section { padding: 60px 20px; }
+            .biodata-table td { display: block; width: 100% !important; }
+            .biodata-table td:nth-child(2) { display: none; }
+            .biodata-table td:first-child { color: var(--accent); margin-top: 10px; }
+            .info-header { flex-direction: column; gap: 30px; }
         }
     </style>
 </head>
@@ -337,7 +361,9 @@
             </div>
             <span class="greeting">Halo, saya</span>
             <h1>M Ikbal Hamka Nizar</h1>
-            <!-- Animasi mengetik akan muncul di sini -->
+            
+            <div class="nim-text">NIM: 105250011</div>
+
             <p class="typing-text">Mahasiswa Informatika & <span style="color:var(--accent)" id="typewriter"></span></p>
             
             <a href="#about" class="btn-cta">Lihat Profil Saya</a>
@@ -347,24 +373,87 @@
     <!-- ABOUT SECTION -->
     <section id="about" class="reveal">
         <h2 class="section-title">Tentang Saya</h2>
+        
+        <!-- KARTU UTAMA: Tampilan Ikon (Dikembalikan) + Biodata -->
         <div class="card">
-            <p style="text-align: center; margin-bottom: 1.5rem; line-height: 1.8; color: var(--text-gray);">
-                "Saya adalah mahasiswa berusia 19 tahun yang sedang menempuh pendidikan tinggi dengan semangat belajar dan berkembang yang konsisten. Saya percaya bahwa proses belajar bukan hanya tentang teori, tetapi juga tentang pengalaman, kolaborasi, dan kontribusi nyata."
-            </p>
-            <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; text-align: center;">
-                <div>
-                    <i class="fas fa-map-marker-alt" style="color: var(--accent);"></i>
+            
+            <!-- TAMPILAN IKON 3 KOLOM YANG DIMINTA KEMBALI -->
+            <div class="info-header">
+                <div class="info-box">
+                    <i class="fas fa-map-marker-alt"></i>
                     <p>Bandung, Indonesia</p>
                 </div>
-                <div>
-                    <i class="fas fa-envelope" style="color: var(--accent);"></i>
+                <div class="info-box">
+                    <i class="fas fa-envelope"></i>
                     <p>ikbalmohamad280@gmail.com</p>
                 </div>
-                <div>
-                    <i class="fas fa-university" style="color: var(--accent);"></i>
+                <div class="info-box">
+                    <i class="fas fa-university"></i>
                     <p>Int. Women University</p>
+                    <!-- Penambahan FST Disini -->
+                    <span>FST (Fakultas Sains & Teknologi)</span>
                 </div>
             </div>
+
+            <!-- Deskripsi Singkat -->
+            <p style="text-align: center; margin-bottom: 2rem; line-height: 1.8; color: var(--text-gray);">
+                "Saya adalah mahasiswa berusia 19 tahun yang sedang menempuh pendidikan tinggi dengan semangat belajar dan berkembang yang konsisten. Saat ini saya fokus memperdalam ilmu di bidang yang saya tekuni, sekaligus aktif mengasah keterampilan teknis, dan komunikasi melalui berbagai kegiatan akademik maupun organisasi."
+                 Saya percaya bahwa proses belajar bukan hanya tentang teori, tetapi juga tentang pengalaman, kolaborasi, dan kontribusi nyata.
+                 Tujuan saya adalah terus meningkatkan kompetensi, memperluas wawasan, serta mempersiapkan diri menjadi individu profesional yang kompeten dan berintegritas di masa depan."
+            </p>
+            
+            <!-- Tabel Biodata Detail -->
+            <table class="biodata-table">
+                <tr>
+                    <td>Tempat, Tgl Lahir</td>
+                    <td>:</td>
+                    <td>BANDUNG, 08-04-2006</td>
+                </tr>
+                <tr>
+                    <td>Kebangsaan</td>
+                    <td>:</td>
+                    <td>INDONESIA</td>
+                </tr>
+                <tr>
+                    <td>Status</td>
+                    <td>:</td>
+                    <td>Belum Menikah / Lajang</td>
+                </tr>
+                <tr>
+                    <td>Agama</td>
+                    <td>:</td>
+                    <td>Islam</td>
+                </tr>
+                <tr>
+                    <td>Jenis Kelamin</td>
+                    <td>:</td>
+                    <td>Laki-Laki</td>
+                </tr>
+                <tr>
+                    <td>Alamat</td>
+                    <td>:</td>
+                    <td>KP. Ciparay RT02/RW05 DES.Sarinagen KEC.Cipongkor</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Kartu 2: Kegiatan -->
+        <div class="card">
+            <h3><i class="fas fa-fire"></i> Kegiatan & Pengembangan Diri</h3>
+            <ul class="activity-list">
+                <li class="activity-item">
+                    <span class="activity-title">Disiplin Pribadi & Fisik</span>
+                    <span class="activity-desc">Mempertahankan rutinitas workout secara konsisten untuk melatih kedisiplinan, ketahanan mental, dan manajemen waktu.</span>
+                </li>
+                <li class="activity-item">
+                    <span class="activity-title">Pengembangan Coding</span>
+                    <span class="activity-desc">Mempelajari serta mengembangkan kemampuan coding dan bahasa pemrograman melalui praktik langsung, latihan algoritma, dan pembuatan proyek kecil secara mandiri.</span>
+                </li>
+                <li class="activity-item">
+                    <span class="activity-title">Logika & Analisis</span>
+                    <span class="activity-desc">Terus meningkatkan kemampuan logika, analisis, dan pemecahan masalah sebagai fondasi dalam bidang teknologi dan pengembangan perangkat lunak.</span>
+                </li>
+            </ul>
         </div>
     </section>
 
@@ -398,7 +487,7 @@
                     <li style="margin-bottom: 10px;">✅ Problem Solving</li>
                     <li style="margin-bottom: 10px;">✅ Berfikir Kritis</li>
                     <li style="margin-bottom: 10px;">✅ Kerja Sama Tim</li>
-                    <li style="margin-bottom: 10px;">✅ Manajemen Waktu (Workout Routine)</li>
+                    <li style="margin-bottom: 10px;">✅ Manajemen Waktu</li>
                     <li style="margin-bottom: 10px;">✅ Komunikasi Efektif</li>
                 </ul>
             </div>
@@ -429,12 +518,17 @@
                 </div>
                 <div class="timeline-item">
                     <span class="year">Lulus Berijazah</span>
-                    <h4>SMK "Karya Perjuangan"</h4>
+                    <h4>SMK "Karya Perjuangan" TEKNIK KOMPUTER & JARINGAN</h4>
                     <p class="text-gray">Cipongkor</p>
                 </div>
                 <div class="timeline-item">
                     <span class="year">Lulus Berijazah</span>
                     <h4>MTS "Mana'arul Huda"</h4>
+                    <p class="text-gray">Cipongkor</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="year">Lulus Berijazah</span>
+                    <h4>MI "Madrasah Ibtidaiah"</h4>
                     <p class="text-gray">Cipongkor</p>
                 </div>
             </div>
@@ -453,9 +547,8 @@
         <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.5;">© 2026 M Ikbal Hamka Nizar</p>
     </footer>
 
-    <!-- JAVASCRIPT (Untuk Animasi) -->
+    <!-- JAVASCRIPT -->
     <script>
-        // 1. TYPING EFFECT (Efek Mengetik)
         const textElement = document.getElementById('typewriter');
         const texts = ["Tech Enthusiast", "Problem Solver", "Gamer", "Learner"];
         let count = 0;
@@ -464,25 +557,20 @@
         let letter = '';
 
         (function type() {
-            if (count === texts.length) {
-                count = 0;
-            }
+            if (count === texts.length) { count = 0; }
             currentText = texts[count];
             letter = currentText.slice(0, ++index);
-
             textElement.textContent = letter;
             if (letter.length === currentText.length) {
                 count++;
                 index = 0;
-                setTimeout(type, 2000); // Tunggu 2 detik sebelum ganti kata
+                setTimeout(type, 2000); 
             } else {
-                setTimeout(type, 150); // Kecepatan mengetik
+                setTimeout(type, 150); 
             }
         }());
 
-        // 2. SCROLL REVEAL (Animasi saat scroll)
         window.addEventListener('scroll', reveal);
-
         function reveal() {
             var reveals = document.querySelectorAll('.reveal');
             for (var i = 0; i < reveals.length; i++) {
@@ -494,8 +582,6 @@
                 }
             }
         }
-        
-        // Panggil reveal sekali saat load agar section pertama terlihat
         reveal();
     </script>
 </body>
