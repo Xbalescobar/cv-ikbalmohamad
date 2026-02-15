@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M Ikbal Hamka Nizar | Portfolio</title>
+    <!-- Font Keren: Poppins & Fira Code (Font Coding) -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Icon Library (FontAwesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- 1. VARIABLES & RESET (UI BASE) --- */
+        :root {
+            --bg-dark: #0a0f1c; /* Lebih gelap, deep navy */
+            --bg-card: rgba(30, 41, 59, 0.6);
+            --primary: #3b82f6; /* Biru Royal */
+            --accent: #06b6d4; /* Cyan Neon */
+            --text-light: #f1f5f9;
+            --text-gray: #94a3b8;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.15), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(6, 182, 212, 0.15), transparent 25%);
+        }
+
+        /* --- 2. NAVIGATION (Floating UI) --- */
+        .navbar {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(15px);
+            padding: 10px 30px;
+            border-radius: 50px;
+            border: 1px solid var(--border);
+            z-index: 1000;
+            display: flex;
+            gap: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .navbar a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .navbar a:hover, .navbar a.active {
+            color: var(--accent);
+            text-shadow: 0 0 10px rgba(6, 182, 212, 0.6);
+        }
+
+        /* --- 3. HERO SECTION (UX Focus: First Impression) --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding: 0 20px;
+        }
+
+        .hero-content {
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .profile-img-wrapper {
+            position: relative;
+            width: 160px;
+            height: 160px;
+            margin: 0 auto 2rem;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--border);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Efek Putaran Neon di Foto */
+        .profile-img-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: -5px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            z-index: 1;
+            animation: spin 4s linear infinite;
+            opacity: 0.7;
+        }
+        
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        .greeting {
+            font-family: 'Fira Code', monospace;
+            color: var(--accent);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .typing-text {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            height: 30px; /* Menjaga layout tidak loncat */
+        }
+
+        .btn-cta {
+            margin-top: 2rem;
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            color: #000;
+            font-weight: 600;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: 0.3s;
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.4);
+        }
+
+        .btn-cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 35px rgba(6, 182, 212, 0.6);
+        }
+
+        /* --- 4. SECTIONS (General Layout) --- */
+        section {
+            padding: 100px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* --- 5. GRID CARDS (Glassmorphism) --- */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            border-radius: 20px;
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            background: rgba(255,255,255,0.05);
+        }
+
+        .card h3 {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card i {
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+
+        /* SKILL BARS */
+        .skill-item {
+            margin-bottom: 1rem;
+        }
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 4px;
+            width: 0; /* Animasi via JS nanti */
+            transition: width 1.5s ease-in-out;
+        }
+
+        /* TIMELINE (Education) */
+        .timeline {
+            border-left: 2px solid var(--border);
+            margin-left: 10px;
+            padding-left: 30px;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -39px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            background: var(--bg-dark);
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+        }
+        .year {
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-family: 'Fira Code', monospace;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        /* --- 6. FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            border-top: 1px solid var(--border);
+            margin-top: 3rem;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        .social-icons {
+            margin-bottom: 1.5rem;
+        }
+        .social-icons a {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: 0.3s;
+        }
+        .social-icons a:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        /* --- ANIMATION CLASS (Scroll Reveal) --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- MOBILE --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .navbar { bottom: 20px; top: auto; width: 90%; justify-content: space-around; }
+            .section { padding: 60px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigasi Melayang -->
+    <nav class="navbar">
+        <a href="#home"><i class="fas fa-home"></i> Home</a>
+        <a href="#about"><i class="fas fa-user"></i> Profil</a>
+        <a href="#skills"><i class="fas fa-code"></i> Skills</a>
+        <a href="#education"><i class="fas fa-graduation-cap"></i> Edu</a>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header id="home" class="hero">
+        <div class="hero-content">
+            <div class="profile-img-wrapper">
+                <!-- GANTI FOTO DISINI -->
+                <img src="foto-profil.jpg" alt="Ikbal" class="profile-img">
+            </div>
+            <span class="greeting">Halo, saya</span>
+            <h1>M Ikbal Hamka Nizar</h1>
+            <!-- Animasi mengetik akan muncul di sini -->
+            <p class="typing-text">Mahasiswa Informatika & <span style="color:var(--accent)" id="typewriter"></span></p>
+            
+            <a href="#about" class="btn-cta">Lihat Profil Saya</a>
+        </div>
+    </header>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="reveal">
+        <h2 class="section-title">Tentang Saya</h2>
+        <div class="card">
+            <p style="text-align: center; margin-bottom: 1.5rem; line-height: 1.8; color: var(--text-gray);">
+                "Saya adalah mahasiswa berusia 19 tahun yang sedang menempuh pendidikan tinggi dengan semangat belajar dan berkembang yang konsisten. Saya percaya bahwa proses belajar bukan hanya tentang teori, tetapi juga tentang pengalaman, kolaborasi, dan kontribusi nyata."
+            </p>
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; text-align: center;">
+                <div>
+                    <i class="fas fa-map-marker-alt" style="color: var(--accent);"></i>
+                    <p>Bandung, Indonesia</p>
+                </div>
+                <div>
+                    <i class="fas fa-envelope" style="color: var(--accent);"></i>
+                    <p>ikbalmohamad280@gmail.com</p>
+                </div>
+                <div>
+                    <i class="fas fa-university" style="color: var(--accent);"></i>
+                    <p>Int. Women University</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section id="skills" class="reveal">
+        <h2 class="section-title">Keahlian Teknis</h2>
+        <div class="grid-container">
+            
+            <!-- Card Coding -->
+            <div class="card">
+                <h3><i class="fas fa-laptop-code"></i> Programming</h3>
+                
+                <div class="skill-item">
+                    <div class="skill-info"><span>HTML & CSS</span><span>80%</span></div>
+                    <div class="progress-bar"><div class="progress" style="width: 80%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info"><span>PHP (Dasar)</span><span>60%</span></div>
+                    <div class="progress-bar"><div class="progress" style="width: 60%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info"><span>JavaScript (Dasar)</span><span>50%</span></div>
+                    <div class="progress-bar"><div class="progress" style="width: 50%"></div></div>
+                </div>
+            </div>
+
+            <!-- Card Soft Skills -->
+            <div class="card">
+                <h3><i class="fas fa-brain"></i> Soft Skills</h3>
+                <ul style="list-style: none; padding-left: 10px; color: var(--text-gray);">
+                    <li style="margin-bottom: 10px;">✅ Problem Solving</li>
+                    <li style="margin-bottom: 10px;">✅ Berfikir Kritis</li>
+                    <li style="margin-bottom: 10px;">✅ Kerja Sama Tim</li>
+                    <li style="margin-bottom: 10px;">✅ Manajemen Waktu (Workout Routine)</li>
+                    <li style="margin-bottom: 10px;">✅ Komunikasi Efektif</li>
+                </ul>
+            </div>
+
+            <!-- Card Hobi -->
+            <div class="card">
+                <h3><i class="fas fa-gamepad"></i> Minat & Hobi</h3>
+                <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
+                    <span style="background: rgba(255,255,255,0.1); padding: 5px 10px; border-radius: 5px;">Coding</span>
+                    <span style="background: rgba(255,255,255,0.1); padding: 5px 10px; border-radius: 5px;">Gaming</span>
+                    <span style="background: rgba(255,255,255,0.1); padding: 5px 10px; border-radius: 5px;">Gitar</span>
+                    <span style="background: rgba(255,255,255,0.1); padding: 5px 10px; border-radius: 5px;">Riding</span>
+                    <span style="background: rgba(255,255,255,0.1); padding: 5px 10px; border-radius: 5px;">Workout</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EDUCATION SECTION -->
+    <section id="education" class="reveal">
+        <h2 class="section-title">Riwayat Pendidikan</h2>
+        <div class="card">
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="year">2024 - Sekarang</span>
+                    <h4>S1 Informatika</h4>
+                    <p class="text-gray">International Women University - Fakultas Sains & Teknologi</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="year">Lulus Berijazah</span>
+                    <h4>SMK "Karya Perjuangan"</h4>
+                    <p class="text-gray">Cipongkor</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="year">Lulus Berijazah</span>
+                    <h4>MTS "Mana'arul Huda"</h4>
+                    <p class="text-gray">Cipongkor</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:ikbalmohamad280@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p>"Fortis Fortuna Adiuvat"</p>
+        <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.5;">© 2026 M Ikbal Hamka Nizar</p>
+    </footer>
+
+    <!-- JAVASCRIPT (Untuk Animasi) -->
+    <script>
+        // 1. TYPING EFFECT (Efek Mengetik)
+        const textElement = document.getElementById('typewriter');
+        const texts = ["Tech Enthusiast", "Problem Solver", "Gamer", "Learner"];
+        let count = 0;
+        let index = 0;
+        let currentText = '';
+        let letter = '';
+
+        (function type() {
+            if (count === texts.length) {
+                count = 0;
+            }
+            currentText = texts[count];
+            letter = currentText.slice(0, ++index);
+
+            textElement.textContent = letter;
+            if (letter.length === currentText.length) {
+                count++;
+                index = 0;
+                setTimeout(type, 2000); // Tunggu 2 detik sebelum ganti kata
+            } else {
+                setTimeout(type, 150); // Kecepatan mengetik
+            }
+        }());
+
+        // 2. SCROLL REVEAL (Animasi saat scroll)
+        window.addEventListener('scroll', reveal);
+
+        function reveal() {
+            var reveals = document.querySelectorAll('.reveal');
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+        
+        // Panggil reveal sekali saat load agar section pertama terlihat
+        reveal();
+    </script>
+</body>
+</html>
